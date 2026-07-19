@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: machine_learning_project
+Version: 0.0.1
+Author: Gireesh Tallur
+Author-email: girishtallur07@gmail.com
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: seaborn
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
