@@ -4,7 +4,8 @@ from typing import List
 minus_e_dot='-e .'
 def get_requirements(file_path:str)->List[str]:
     """
-    this function will return the list of packages """
+    this function will return the list of packages 
+    """
     requirements=[]
     with open(file_path) as file_object:
         requirements=file_object.readlines()
@@ -13,7 +14,6 @@ def get_requirements(file_path:str)->List[str]:
             requirements.remove(minus_e_dot)
 
     return requirements
-
 setup(
     name='machine_learning_project',
     version="0.0.1",
