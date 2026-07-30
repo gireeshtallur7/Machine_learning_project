@@ -1,7 +1,7 @@
 import os
 import sys
 from SOURCE.ulits import saved_objects,eval_model
-import pandas as ps
+import pandas as pd
 import numpy as np
 from dataclasses import dataclass
 from sklearn.ensemble import AdaBoostRegressor,GradientBoostingRegressor,RandomForestRegressor
@@ -43,8 +43,44 @@ class Model_Trainer:
                 "Adaboosting":AdaBoostRegressor()
 
             }
-
-            model_report:dict=eval_model(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models)
+            params={
+                "Decision_tree": {
+                    'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                    # 'splitter':['best','random'],
+                    # 'max_features':['sqrt','log2'],
+                },
+                "Random_forest":{
+                    # 'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                 
+                    # 'max_features':['sqrt','log2',None],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "Gradient_Boosting":{
+                    # 'loss':['squared_error', 'huber', 'absolute_error', 'quantile'],
+                    'learning_rate':[.1,.01,.05,.001],
+                    'subsample':[0.6,0.7,0.75,0.8,0.85,0.9],
+                    # 'criterion':['squared_error', 'friedman_mse'],
+                    # 'max_features':['auto','sqrt','log2'],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "Linear_Regressor":{},
+                "XGBoost":{
+                    'learning_rate':[.1,.01,.05,.001],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "Cat_Boosting":{
+                    'depth': [6,8,10],
+                    'learning_rate': [0.01, 0.05, 0.1],
+                    'iterations': [30, 50, 100]
+                },
+                "Adaboosting":{
+                    'learning_rate':[.1,.01,0.5,.001],
+                    # 'loss':['linear','square','exponential'],
+                    'n_estimators': [8,16,32,64,128,256]
+                }
+                
+            }
+            model_report:dict=eval_model(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models,hyper_param=params)
 
         # to get the best model score from the dectionary 
             best_model_score=max(sorted(model_report.values()))
