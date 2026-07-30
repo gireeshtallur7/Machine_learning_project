@@ -4,10 +4,12 @@ from SOURCE.exception import Custom_Exception
 from SOURCE.logger import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
-
+# from SOURCE.ulits import 
 from dataclasses import dataclass
 from SOURCE.components.data_transformation import Data_transformation
 from SOURCE.components.data_transformation import Data_transformation_config
+from SOURCE.components.training_model import Model_Training_Config
+from SOURCE.components.training_model import Model_Trainer
 
 @dataclass
 class Data_Ingestion_Config:
@@ -23,7 +25,7 @@ class Data_ingestion:
     def initiative_data_ingestion(self):
         logging.info("external data ingestion methods or components")
         try:
-            df=pd.read_csv("students_data\stud.csv")
+            df=pd.read_csv(r"students_data\stud.csv")
             logging.info("read the dataset as dataframe")
             os.makedirs(os.path.dirname(self.ingestion_Config.train_data_path),exist_ok=True)
 
@@ -46,6 +48,8 @@ if __name__=="__main__":
     train_data,test_data=objects.initiative_data_ingestion()
 
     data_transformation=Data_transformation()
-    data_transformation.initiate_data_transform(train_data,test_data)
+    train_arr,test_arr,_=data_transformation.initiate_data_transform(train_data,test_data)
 
+    Model_trainer=Model_Trainer()
+    print(Model_trainer.initiate_model_trainer(train_arr,test_arr))
 
