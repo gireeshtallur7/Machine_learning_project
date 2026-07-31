@@ -44,3 +44,9 @@ def saved_objects(file_path,obj):
             dill.dump(obj,file_obj)
     except Exception as e:
         raise Custom_Exception(e,sys)
+def load_object(file_path): #the load_object just opening the file path in readbite mode and loading the pickel file by using the dill
+    try:
+        with open(file_path,'rb') as file_obj:
+            return dill.load(file_obj)
+    except Exception as e:
+        raise Custom_Exception(e,sys)
