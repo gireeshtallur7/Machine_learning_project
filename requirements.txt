@@ -1,3 +1,4 @@
+Flask
 pandas 
 numpy
 seaborn
@@ -6,5 +7,7 @@ scikit-learn
 catboost
 dill
 xgboost
+joblib
+gunicorn
 
 # -e .
