@@ -36,4 +36,4 @@ def predict_data_point(): #inside this func i will getting my data & doing the p
         return render_template('home.html',results=results[0])
 
 if __name__=='__main__':
-    web_app.run(host="0.0.0.0",debug=True)
+    web_app.run(host="0.0.0.0")

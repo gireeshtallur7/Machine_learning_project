@@ -1,3 +1,4 @@
+import os
 import sys
 import pandas as pd
 from SOURCE.exception import Custom_Exception
@@ -8,8 +9,8 @@ class PredictPipeline:
         pass
     def model_prediction(self,features): #prediciton of my model
         try:
-            model_path="artifact_model\\model.pkl"
-            preprocessor_path='artifacts\\preprocessor.pkl'
+            model_path=os.path.join("artifact_model", "model.pkl")
+            preprocessor_path=os.path.join("artifacts", "preprocessor.pkl")
             model=load_object(file_path=model_path) # this load_object will import the pickel and load the pickel file
             preprocessor=load_object(file_path=preprocessor_path)
 
